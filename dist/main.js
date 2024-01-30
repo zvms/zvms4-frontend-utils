@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import JSEntrypt from 'jsencrypt';
 
 function getUserGrade(year) {
   const y = dayjs().year();
@@ -85,7 +86,7 @@ var _class = /*#__PURE__*/Object.freeze({
   getUserGrade: getUserGrade
 });
 
-var index$1 = /*#__PURE__*/Object.freeze({
+var index$2 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   classname: _class
 });
@@ -128,10 +129,35 @@ var userPosition = /*#__PURE__*/Object.freeze({
   getUserPosition: getUserPosition
 });
 
-var index = /*#__PURE__*/Object.freeze({
+var index$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
   v3: userPosition
 });
 
-export { index$1 as data, index as v3 };
+function generatePayload(password) {
+  return JSON.stringify({
+    password,
+    timestamp: Date.now()
+  })
+}
+
+function encrypt(payload, publicKey) {
+  const encryptor = new JSEntrypt();
+  encryptor.setPublicKey(publicKey);
+  const credential = encryptor.encrypt(payload);
+  return credential
+}
+
+var rsa = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  encrypt: encrypt,
+  generatePayload: generatePayload
+});
+
+var index = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  rsa: rsa
+});
+
+export { index$2 as data, index as encryption, index$1 as v3 };
 //# sourceMappingURL=main.js.map

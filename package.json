@@ -1,6 +1,6 @@
 {
   "name": "@zvms/frontend-utils",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Utils of ZVMS4 Frontend",
   "author": "",
   "contributors": [
@@ -31,6 +31,15 @@
     "@rollup/plugin-alias": "^5.1.0",
     "@rushstack/eslint-patch": "^1.7.2",
     "@zvms/zvms4-types": "^0.1.0",
-    "dayjs": "^1.11.10"
+    "axios": "^1.6.7",
+    "dayjs": "^1.11.10",
+    "jsencrypt": "^3.3.2"
+  },
+  "peerDependencies": {
+    "@zvms/zvms4-types": "^0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zvms/zvms4-frontend-utils.git"
   }
 }

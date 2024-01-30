@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import JSEntrypt from 'jsencrypt';
 
 function getUserGrade(year) {
   const y = dayjs().year();
@@ -85,7 +86,7 @@ declare namespace _class {
   export { _class_getClassName as getClassName, _class_getUserClass as getUserClass, _class_getUserClassByCode as getUserClassByCode, _class_getUserClassByNumber as getUserClassByNumber, _class_getUserClassName as getUserClassName, _class_getUserGrade as getUserGrade };
 }
 
-declare namespace index$1 {
+declare namespace index$2 {
   export { _class as classname };
 }
 
@@ -127,8 +128,33 @@ declare namespace userPosition {
   export { userPosition_getUserPosition as getUserPosition };
 }
 
-declare namespace index {
+declare namespace index$1 {
   export { userPosition as v3 };
 }
 
-export { index$1 as data, index as v3 };
+function generatePayload(password) {
+  return JSON.stringify({
+    password,
+    timestamp: Date.now()
+  })
+}
+
+function encrypt(payload, publicKey) {
+  const encryptor = new JSEntrypt();
+  encryptor.setPublicKey(publicKey);
+  const credential = encryptor.encrypt(payload);
+  return credential
+}
+
+declare const rsa_encrypt: typeof encrypt;
+declare const rsa_generatePayload: typeof generatePayload;
+declare namespace rsa {
+  export { rsa_encrypt as encrypt, rsa_generatePayload as generatePayload };
+}
+
+declare const index_rsa: typeof rsa;
+declare namespace index {
+  export { index_rsa as rsa };
+}
+
+export { index$2 as data, index as encryption, index$1 as v3 };
