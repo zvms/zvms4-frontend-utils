@@ -7,7 +7,8 @@
     "zhangzheheng12345",
     "diyanqi"
   ],
-  "main": "index.js",
+  "main": "dist/main.min.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs"
   },
@@ -28,6 +29,8 @@
   },
   "dependencies": {
     "@rollup/plugin-alias": "^5.1.0",
-    "@rushstack/eslint-patch": "^1.7.2"
+    "@rushstack/eslint-patch": "^1.7.2",
+    "@zvms/zvms4-types": "^0.1.0",
+    "dayjs": "^1.11.10"
   }
 }
